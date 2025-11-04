@@ -166,7 +166,93 @@ mostrarPaises(paises);
 
 let titulo=  document.getElementById("titulo");
 
-titulo.innerText="Hola Mundo Modificado con JavaScript";
+titulo.innerText="Hola Mundo..... 3/11 Modificado con JavaScript";
+titulo.style.color="blue";
+titulo.id="miTitulo";
 
 
+//creo un parrafo
+let nuevoParrafo= document.createElement("p");
+nuevoParrafo.innerText="Este es un nuevo párrafo creado con JavaScript";
 
+
+let nuevoParrafo2= document.createElement("p");
+nuevoParrafo2.innerText="Este es un segundo  párrafo creado con JavaScript";
+nuevoParrafo2.style.fontWeight="bold";
+
+let tituloSecundario= document.createElement("h2");
+tituloSecundario.innerText="Subtitulo creado con JavaScript";
+tituloSecundario.style.textDecoration="underline";
+tituloSecundario.style.color="green";
+
+
+// busco el contenedor
+let contenedor= document.getElementById("contenedor");
+// agrego el parrafo al contenedor
+contenedor.appendChild(tituloSecundario);
+contenedor.appendChild(nuevoParrafo);
+contenedor.appendChild(nuevoParrafo2);
+
+
+// elimino el segundo parrafo
+contenedor.removeChild(nuevoParrafo2);
+
+let cantidad= document.createElement("p");
+cantidad.innerText ="1"
+contenedor.appendChild(cantidad);
+
+let boton= document.createElement("button");
+boton.innerText="contar cliks";
+contenedor.appendChild(boton);
+
+// eventos
+boton.onclick= function(){
+    cantidad.innerText= parseInt(cantidad.innerText) + 1;
+}
+
+
+let paisesDelMundo=["España", "Francia", "Italia", "Alemania", "EEUU", "Canada", "Mexico", "Brasil", "Argentina", "Chile"];
+
+// FUNCIONES DE ORDEN SUPERIOR 
+
+function mostrarPaises(pais){
+    console.log("Pais: " + pais);
+}
+
+// forEach : recorre cada elemento del array y ejecuta la funcion pasada por parametro
+paisesDelMundo.forEach( pais =>mostrarPaises(pais) );
+
+// map : trasnforma cada elemento del array y crea un nuevo array con los resultados
+//  de la funcion pasada por parametro
+let precios=[100,221,310,400,520]; 
+let preciosConIVA= precios.map( precio => precio * 1.21 );
+console.log("Precios con IVA: " + preciosConIVA);
+
+//filter : filtra los elementos del array que cumplen con la condicion
+let preciosBajos= precios.filter( precio => precio < 500 );
+console.log("Precios bajos: " + preciosBajos);
+
+// sort
+console.log("Paises ordenados: " + paisesDelMundo.sort());
+console.log("Precios ordenados: " + preciosConIVA.sort());
+
+
+let personasEnClase=[
+    {nombre:"Ana", edad:20},
+    {nombre:"Juan", edad:17},
+    {nombre:"Maria", edad:22},
+    {nombre:"Pedro", edad:15},
+];
+
+// find : busca el primer elemento que cumple con la condicion
+// devuelve el elemento encontrado o undefined si no lo encuentra
+console.log(personasEnClase.find( persona => persona.edad<18 &&  persona.nombre=="Pedro") );
+
+
+// la posición en el array
+console.log(personasEnClase.findIndex( persona => persona.edad<18 &&  persona.nombre=="Pedro") );
+
+
+// reduce : reduce el array a un solo valor aplicando la funcion pasada por parametro
+let paisesNueva=paisesDelMundo.reduce( (acumulador, pais) => acumulador + " | " + pais );
+console.log("Paises reducidos: " + paisesNueva);
